@@ -11,6 +11,8 @@
 @set game_path=NOT SET
 @set mod_path=NOT SET
 
+@set path_verified=false
+
 @rem Color variables (red)
 @rem If the color of the command prompt window is changed,
 @rem the value of the suffix variable needs to be changed to reflect that color.
@@ -47,6 +49,11 @@
 
 :set_game_path
 @cls
+	@if %path_verified% == true (
+		@set path_verified=false
+		@set game_path=%path_to_check%
+		goto main_menu
+	)
 @echo ____________________________________________________________________________________
 @echo.
 @echo                                       GAME PATH
@@ -54,9 +61,9 @@
 @echo.
 @echo                                 [UNDER CONSTRUCTION]
 @echo.
-@echo  Press any key to return to the main menu . . .
-@pause > nul
-goto main_menu
+@set /p path_to_check=Please, drag and drop your Crusader Kings III folder here: 
+@set return_to_label=set_game_path
+goto check_path
 
 
 :set_mod_path
@@ -83,4 +90,22 @@ goto main_menu
 @echo.
 @echo Press any key to return to the main menu . . .
 @pause > nul
+goto main_menu
+
+:check_path
+@cls
+	@rem Check if the user-specified path is empty. If so, return. Else continue.
+	@if not defined path_to_check ( goto %return_to_label% )
+
+@rem Remove double quotes from the path.
+@rem Needs to be placed below the empty path check. Otherwise, the variable will get defined.
+@set path_to_check=%path_to_check:"=%
+
+	@rem Check if the user-specified path exists.
+	@if exist %path_to_check% (
+		set path_verified=true
+		goto %return_to_label%
+	)
+
+@echo Path does not exist
 goto main_menu
