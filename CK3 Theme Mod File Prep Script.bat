@@ -51,10 +51,7 @@
 	@if %errorlevel% == 1 ( @goto set_game_path )
 	@if %errorlevel% == 2 ( @goto set_mod_path )
 	@if %errorlevel% == 3 ( exit )
-	@if %errorlevel% == 4 ( @goto start_copying )
-
-@rem TODO: Create a check to see if the specified path exists.
-@rem TODO: Create a variable that keeps track of the label, where it needs to return to after completion.
+	@if %errorlevel% == 4 ( @goto check_paths_set )
 
 :set_game_path
 @cls
@@ -117,19 +114,6 @@
 @set return_to_label=set_mod_path
 @goto check_path
 
-:start_copying
-@cls
-@echo ____________________________________________________________________________________
-@echo.
-@echo                                     COPYING FILES
-@echo ____________________________________________________________________________________
-@echo.
-@echo                                 [UNDER CONSTRUCTION]
-@echo.
-@echo Press any key to return to the main menu . . .
-@pause > nul
-@goto main_menu
-
 :check_path
 @rem Remove double quotes from the path.
 @set path_to_check=%path_to_check:"=%
@@ -157,3 +141,53 @@
 @pause > nul
 @color %window_color%
 @goto %return_to_label%
+
+:check_paths_set
+@rem Check if all mod and game paths are set, by checking if it's a valid bath
+@if not exist "%game_path%" ( @goto paths_not_set )
+@if not exist "%mod_path%" ( @goto paths_not_set )
+@goto start_copying_prompt
+
+:paths_not_set
+@cls
+@color %warning_color%
+@echo ____________________________________________________________________________________
+@echo.
+@echo                                        WARNING
+@echo ____________________________________________________________________________________
+@echo.
+@echo  Not all paths are defined.
+@echo  Please, make sure you've set both the game and mod paths.
+@echo.
+@echo  Press any key to continue . . .
+@pause > nul
+@color %window_color%
+@goto main_menu
+
+:start_copying_prompt
+@cls
+@echo ____________________________________________________________________________________
+@echo.
+@echo                                    ARE YOU SURE?
+@echo ____________________________________________________________________________________
+@echo.
+@echo  Copying files to: [91m%mod_path%%color_suffix%
+@echo.
+@echo  Are you sure you want to start copying files to your specified mod folder?
+@echo  All texture files already present will be overwritten. [Y/N]?
+@choice /c YN /n
+	@if %errorlevel% == 1 ( @goto start_copying )
+	@if %errorlevel% == 2 ( @goto main_menu )
+
+:start_copying
+@cls
+@echo ____________________________________________________________________________________
+@echo.
+@echo                                     COPYING FILES
+@echo ____________________________________________________________________________________
+@echo.
+@echo                                 [UNDER CONSTRUCTION]
+@echo.
+@echo Press any key to return to the main menu . . .
+@pause > nul
+@goto main_menu
