@@ -5,6 +5,7 @@
 @rem Path variables
 @set game_path=NOT SET
 @set mod_path=NOT SET
+@set path_to_check=undefined
 
 @set path_verified=false
 
@@ -24,6 +25,8 @@
 @title CK3 Theme Mod File Prep Script v%version_number%
 @color %window_color%
 @mode 84, 47
+
+@rem TODO: Refactor the "path_to_check=undefined" system
 
 :main_menu
 @cls
@@ -64,8 +67,6 @@
 @echo                                       GAME PATH
 @echo ____________________________________________________________________________________
 @echo.
-@echo                                 [UNDER CONSTRUCTION]
-@echo.
 @set /p path_to_check=Please, drag and drop your "Crusader Kings III" install folder here: 
 @set return_to_label=set_game_path
 @goto check_path
@@ -75,6 +76,8 @@
 @rem If so, set the game_path variable. If not, display a warning.
 @if exist "%path_to_check%\binaries\ck3.exe" (
 	@set game_path=%path_to_check%
+	@set path_to_check=undefined
+	@set path_verified=false
 	@set color_prefix_game=[92m
 	@goto main_menu
 )
@@ -91,21 +94,28 @@
 @echo.
 @echo  Press any key to continue . . .
 @pause > nul
+@set path_to_check=undefined
+@set path_verified=false
 @color %window_color%
-@goto main_menu
+@goto set_game_path
 
 :set_mod_path
 @cls
+	@if %path_verified% == true (
+		@set mod_path=%path_to_check%
+		@set path_to_check=undefined
+		@set path_verified=false
+		@set color_prefix_mod=[92m
+		@goto main_menu
+	)
 @echo ____________________________________________________________________________________
 @echo.
 @echo                                        MOD PATH
 @echo ____________________________________________________________________________________
 @echo.
-@echo                                 [UNDER CONSTRUCTION]
-@echo.
-@echo Press any key to return to the main menu . . .
-@pause > nul
-@goto main_menu
+@set /p path_to_check=Please drag and drop your desired mod folder here: 
+@set return_to_label=set_mod_path
+@goto check_path
 
 :start_copying
 @cls
@@ -121,13 +131,11 @@
 @goto main_menu
 
 :check_path
-	@rem Check if the user-specified path is empty. If so, return. Else continue.
-	@if not defined path_to_check ( @goto %return_to_label% )
-
 @rem Remove double quotes from the path.
-@rem Needs to be placed below the empty path check. Otherwise,
-@rem the variable will get defined, and the check will not work.
 @set path_to_check=%path_to_check:"=%
+
+	@rem Check if the user-specified path is empty. If so, return. Else continue.
+	@if "%path_to_check%" == "undefined" ( @goto %return_to_label% )
 
 	@rem Check if the user-specified path exists.
 	@if exist %path_to_check% (
@@ -145,6 +153,7 @@
 @echo  The path does not exist. Please, enter a valid path.
 @echo.
 @echo  Press any key to continue . . .
+@set path_to_check=undefined
 @pause > nul
 @color %window_color%
-@goto main_menu
+@goto %return_to_label%
