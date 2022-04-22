@@ -1,5 +1,5 @@
 @rem Set version number variable
-@set version_number=0.1
+@set version_number=1.0-rc.1
 
 @rem Setting up variables
 @rem Path variables
@@ -36,7 +36,7 @@
 @echo ____________________________________________________________________________________
 @echo.
 @echo  Game Path: %color_prefix_game%%game_path%%color_suffix%
-@echo  Mod Path: %color_prefix_mod%%mod_path%%color_suffix%
+@echo   Mod Path: %color_prefix_mod%%mod_path%%color_suffix%
 @echo ____________________________________________________________________________________
 @echo.
 @echo  [1] Set Game Path
@@ -64,7 +64,8 @@
 @echo                                       GAME PATH
 @echo ____________________________________________________________________________________
 @echo.
-@set /p path_to_check=Please, drag and drop your "Crusader Kings III" install folder here: 
+@echo  Please, drag and drop your "Crusader Kings III" install folder here: 
+@set /p path_to_check=
 @set return_to_label=set_game_path
 @goto check_path
 
@@ -110,7 +111,8 @@
 @echo                                        MOD PATH
 @echo ____________________________________________________________________________________
 @echo.
-@set /p path_to_check=Please drag and drop your desired mod folder here: 
+@echo  Please drag and drop your desired mod folder here: 
+@set /p path_to_check=
 @set return_to_label=set_mod_path
 @goto check_path
 
@@ -168,7 +170,7 @@
 @cls
 @echo ____________________________________________________________________________________
 @echo.
-@echo                                    ARE YOU SURE?
+@echo                                     ARE YOU SURE?
 @echo ____________________________________________________________________________________
 @echo.
 @echo  Copying files to: [91m%mod_path%%color_suffix%
@@ -186,8 +188,70 @@
 @echo                                     COPYING FILES
 @echo ____________________________________________________________________________________
 @echo.
-@echo                                 [UNDER CONSTRUCTION]
+@rem Buttons
+@xcopy "%game_path%\game\gfx\interface\buttons\button_checkbox_background.dds" "%mod_path%\gfx\interface\buttons\" /v /i /q /y
+@xcopy "%game_path%\game\gfx\interface\buttons\button_drop_down.dds" "%mod_path%\gfx\interface\buttons\" /v /i /q /y
+@xcopy "%game_path%\game\gfx\interface\buttons\button_entry_01.dds" "%mod_path%\gfx\interface\buttons\" /v /i /q /y
+@xcopy "%game_path%\game\gfx\interface\buttons\button_entry_02.dds" "%mod_path%\gfx\interface\buttons\" /v /i /q /y
+@xcopy "%game_path%\game\gfx\interface\buttons\button_entry_characterlist.dds" "%mod_path%\gfx\interface\buttons\" /v /i /q /y
+@xcopy "%game_path%\game\gfx\interface\buttons\button_event.dds" "%mod_path%\gfx\interface\buttons\" /v /i /q /y
+@xcopy "%game_path%\game\gfx\interface\buttons\button_fancy_glow.dds" "%mod_path%\gfx\interface\buttons\" /v /i /q /y
+@xcopy "%game_path%\game\gfx\interface\buttons\button_fancy.dds" "%mod_path%\gfx\interface\buttons\" /v /i /q /y
+@xcopy "%game_path%\game\gfx\interface\buttons\button_frontend.dds" "%mod_path%\gfx\interface\buttons\" /v /i /q /y
+@xcopy "%game_path%\game\gfx\interface\buttons\button_hold_court_bg.dds" "%mod_path%\gfx\interface\buttons\" /v /i /q /y
+@xcopy "%game_path%\game\gfx\interface\buttons\button_hold_court_glow.dds" "%mod_path%\gfx\interface\buttons\" /v /i /q /y
+@xcopy "%game_path%\game\gfx\interface\buttons\button_small_dec.dds" "%mod_path%\gfx\interface\buttons\" /v /i /q /y
+@xcopy "%game_path%\game\gfx\interface\buttons\button_sort.dds" "%mod_path%\gfx\interface\buttons\" /v /i /q /y
+@xcopy "%game_path%\game\gfx\interface\buttons\button_standard.dds" "%mod_path%\gfx\interface\buttons\" /v /i /q /y
+@xcopy "%game_path%\game\gfx\interface\buttons\button_standard_clean.dds" "%mod_path%\gfx\interface\buttons\" /v /i /q /y
+@xcopy "%game_path%\game\gfx\interface\buttons\button_standard_clean_weak.dds" "%mod_path%\gfx\interface\buttons\" /v /i /q /y
+@xcopy "%game_path%\game\gfx\interface\buttons\button_tertiary.dds" "%mod_path%\gfx\interface\buttons\" /v /i /q /y
+@xcopy "%game_path%\game\gfx\interface\buttons\button_verb_primary.dds" "%mod_path%\gfx\interface\buttons\" /v /i /q /y
+
+@rem Component tiles
+@xcopy "%game_path%\game\gfx\interface\component_tiles\background_area_light.dds" "%mod_path%\gfx\interface\component_tiles\" /v /i /q /y
+@xcopy "%game_path%\game\gfx\interface\component_tiles\interaction_menu_bg.dds" "%mod_path%\gfx\interface\component_tiles\" /v /i /q /y
+@xcopy "%game_path%\game\gfx\interface\component_tiles\interaction_menu_more_bg.dds" "%mod_path%\gfx\interface\component_tiles\" /v /i /q /y
+@xcopy "%game_path%\game\gfx\interface\component_tiles\tile_background_window_header.dds" "%mod_path%\gfx\interface\component_tiles\" /v /i /q /y
+@xcopy "%game_path%\game\gfx\interface\component_tiles\tile_bg_characterlist.dds" "%mod_path%\gfx\interface\component_tiles\" /v /i /q /y
+@xcopy "%game_path%\game\gfx\interface\component_tiles\tile_header_background_01.dds" "%mod_path%\gfx\interface\component_tiles\" /v /i /q /y
+@xcopy "%game_path%\game\gfx\interface\component_tiles\tile_title_bg_01.dds" "%mod_path%\gfx\interface\component_tiles\" /v /i /q /y
+@xcopy "%game_path%\game\gfx\interface\component_tiles\tile_title_big_top_01.dds" "%mod_path%\gfx\interface\component_tiles\" /v /i /q /y
+@xcopy "%game_path%\game\gfx\interface\component_tiles\tile_window_background_no_edge.dds" "%mod_path%\gfx\interface\component_tiles\" /v /i /q /y
+@xcopy "%game_path%\game\gfx\interface\component_tiles\tile_window_background_popup.dds" "%mod_path%\gfx\interface\component_tiles\" /v /i /q /y
+@xcopy "%game_path%\game\gfx\interface\component_tiles\tile_window_background_sidebar.dds" "%mod_path%\gfx\interface\component_tiles\" /v /i /q /y
+@xcopy "%game_path%\game\gfx\interface\component_tiles\tile_window_background_subwindow.dds" "%mod_path%\gfx\interface\component_tiles\" /v /i /q /y
+@xcopy "%game_path%\game\gfx\interface\component_tiles\tile_window_background.dds" "%mod_path%\gfx\interface\component_tiles\" /v /i /q /y
+
+@rem Frontend
+@xcopy "%game_path%\game\gfx\interface\frontend\frontend_main_menu_bg_button_glow.dds" "%mod_path%\gfx\interface\frontend\" /v /i /q /y
+@xcopy "%game_path%\game\gfx\interface\frontend\frontend_main_menu_bg.dds" "%mod_path%\gfx\interface\frontend\" /v /i /q /y
+
+@rem Frontend illustrations
+@xcopy "%game_path%\game\gfx\interface\illustrations\frontend\pause_bg.dds" "%mod_path%\gfx\interface\illustrations\frontend\" /v /i /q /y
+
+@rem Window headers
+@xcopy "%game_path%\game\gfx\interface\illustrations\window_headers\header_military.dds" "%mod_path%\gfx\interface\illustrations\window_headers\" /v /i /q /y
+@xcopy "%game_path%\game\gfx\interface\illustrations\window_headers\header_my_realm.dds" "%mod_path%\gfx\interface\illustrations\window_headers\" /v /i /q /y
+@xcopy "%game_path%\game\gfx\interface\illustrations\window_headers\header_prison.dds" "%mod_path%\gfx\interface\illustrations\window_headers\" /v /i /q /y
+
+@rem Skinned
+@xcopy "%game_path%\game\gfx\interface\skinned\button_hud_character_bar.dds" "%mod_path%\gfx\interface\skinned\" /v /i /q /y
+
+@rem Tooltips
+@xcopy "%game_path%\game\gfx\interface\tooltips\tooltip_bg.dds" "%mod_path%\gfx\interface\tooltips\" /v /i /q /y
+@xcopy "%game_path%\game\gfx\interface\tooltips\tooltip_frame.dds" "%mod_path%\gfx\interface\tooltips\" /v /i /q /y
+
+@rem Window roco grandeur (Royal court)
+@xcopy "%game_path%\game\gfx\interface\window_roco_grandeur\amenity_level_bg.dds" "%mod_path%\gfx\interface\window_roco_grandeur\" /v /i /q /y
+@xcopy "%game_path%\game\gfx\interface\window_roco_grandeur\court_grandeur_bg.dds" "%mod_path%\gfx\interface\window_roco_grandeur\" /v /i /q /y
+@xcopy "%game_path%\game\gfx\interface\window_roco_grandeur\line_corner_court_amenities.dds" "%mod_path%\gfx\interface\window_roco_grandeur\" /v /i /q /y
+@xcopy "%game_path%\game\gfx\interface\window_roco_grandeur\line_horizontal_court_amenities.dds" "%mod_path%\gfx\interface\window_roco_grandeur\" /v /i /q /y
+@xcopy "%game_path%\game\gfx\interface\window_roco_grandeur\line_vertical_court_amenities.dds" "%mod_path%\gfx\interface\window_roco_grandeur\" /v /i /q /y
+
+@echo ____________________________________________________________________________________
 @echo.
-@echo Press any key to return to the main menu . . .
-@pause > nul
+@echo                                     FILES COPIED
+@echo ____________________________________________________________________________________
+@timeout /t 3 > nul
 @goto main_menu
