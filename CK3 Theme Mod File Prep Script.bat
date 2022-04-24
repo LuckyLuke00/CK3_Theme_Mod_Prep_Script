@@ -1,5 +1,5 @@
 @rem Set version number variable
-@set version_number=1.0-rc.1
+@set version_number=1.0
 
 @rem Setting up variables
 @rem Path variables
@@ -35,8 +35,11 @@
 @echo                                CK3 THEME MOD FILE PREP
 @echo ____________________________________________________________________________________
 @echo.
-@echo  Game Path: %color_prefix_game%%game_path%%color_suffix%
-@echo   Mod Path: %color_prefix_mod%%mod_path%%color_suffix%
+@echo  Game Path:
+@echo  %color_prefix_game%%game_path%%color_suffix%
+@echo.
+@echo  Mod Path:
+@echo  %color_prefix_mod%%mod_path%%color_suffix%
 @echo ____________________________________________________________________________________
 @echo.
 @echo  [1] Set Game Path
@@ -173,7 +176,8 @@
 @echo                                     ARE YOU SURE?
 @echo ____________________________________________________________________________________
 @echo.
-@echo  Copying files to: [91m%mod_path%%color_suffix%
+@echo  Copying files to:
+@echo  [91m%mod_path%%color_suffix%
 @echo.
 @echo  Are you sure you want to start copying files to your specified mod folder?
 @echo  All texture files already present will be overwritten. [Y/N]?
