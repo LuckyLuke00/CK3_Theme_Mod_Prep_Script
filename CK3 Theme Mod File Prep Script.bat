@@ -197,6 +197,7 @@
 @md "%mod_path%\gfx\interface\buttons\32bit-RGBA-no-mips"
 @md "%mod_path%\gfx\interface\buttons\DXT5-mips"
 @md "%mod_path%\gfx\interface\buttons\DXT5-no-mips"
+@md "%mod_path%\gfx\interface\buttons\DXT1-no-mips"
 
 @xcopy "%game_path%\game\gfx\interface\buttons\button_checkbox_background.dds" "%mod_path%\gfx\interface\buttons\DXT5-mips" /v /i /q /y
 @xcopy "%game_path%\game\gfx\interface\buttons\button_verb_primary.dds" "%mod_path%\gfx\interface\buttons\DXT5-no-mips" /v /i /q /y
@@ -267,6 +268,19 @@
 @xcopy "%game_path%\game\gfx\interface\window_roco_grandeur\line_corner_court_amenities.dds" "%mod_path%\gfx\interface\window_roco_grandeur\32bit-RGBA-no-mips" /v /i /q /y
 @xcopy "%game_path%\game\gfx\interface\window_roco_grandeur\line_horizontal_court_amenities.dds" "%mod_path%\gfx\interface\window_roco_grandeur\32bit-RGBA-no-mips" /v /i /q /y
 @xcopy "%game_path%\game\gfx\interface\window_roco_grandeur\line_vertical_court_amenities.dds" "%mod_path%\gfx\interface\window_roco_grandeur\32bit-RGBA-no-mips" /v /i /q /y
+
+@rem Make a folder for easy bulk editing in Photoshop
+@md "%mod_path%\Edit\32bit-RGBA-mips"
+@md "%mod_path%\Edit\32bit-RGBA-no-mips"
+@md "%mod_path%\Edit\DXT5-mips"
+@md "%mod_path%\Edit\DXT5-no-mips"
+@md "%mod_path%\Edit\DXT1-no-mips"
+
+@md "%mod_path%\Done\32bit-RGBA-mips"
+@md "%mod_path%\Done\32bit-RGBA-no-mips"
+@md "%mod_path%\Done\DXT5-mips"
+@md "%mod_path%\Done\DXT5-no-mips"
+@md "%mod_path%\Done\DXT1-no-mips"
 
 @echo ____________________________________________________________________________________
 @echo.
